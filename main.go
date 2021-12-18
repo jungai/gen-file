@@ -44,6 +44,8 @@ func main() {
 					err = os.WriteFile(targetPath, content, 0644)
 
 					if err != nil {
+						fmt.Println("cannot write file")
+
 						return nil
 					}
 
