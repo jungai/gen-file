@@ -18,9 +18,9 @@ func main() {
 	app := &cli.App{
 		Commands: []*cli.Command{
 			{
-				Name:    "prettier",
-				Aliases: []string{"p"},
-				Usage:   "generate preitter config file (.prettier)",
+				Name:    "editorconfig",
+				Aliases: []string{"e"},
+				Usage:   "generate editorconfig config file (.editorconfig)",
 				Action: func(c *cli.Context) error {
 					if c.Args().Len() < 2 {
 						fmt.Println("required <config type> <template> <path>")
@@ -54,9 +54,9 @@ func main() {
 			},
 			{
 				// TODO: add action
-				Name:    "editorconfig",
+				Name:    "prettier",
 				Aliases: []string{"p"},
-				Usage:   "generate editorconfig config file (.editorconfig)",
+				Usage:   "generate prettier config file (.prettier)",
 			},
 			{
 				Name:    "list",
