@@ -18,12 +18,34 @@ func main() {
 	app := &cli.App{
 		Commands: []*cli.Command{
 			{
-				// TODO: add action
 				Name:    "prettier",
 				Aliases: []string{"p"},
 				Usage:   "generate preitter config file (.prettier)",
 				Action: func(c *cli.Context) error {
-					fmt.Println(c.Args().First())
+					if c.Args().Len() < 2 {
+						fmt.Println("required <config type> <template> <path>")
+
+						return nil
+					}
+					value := c.Args().Slice()
+
+					template := value[0]
+					templatePath := fmt.Sprintf("./templates/editorconfig/%v", template)
+					targetPath := fmt.Sprintf("%s/.editorconfig", value[1])
+
+					content, err := os.ReadFile(templatePath)
+
+					if err != nil {
+						fmt.Println("editorconfig template not found !!")
+
+						return nil
+					}
+
+					err = os.WriteFile(targetPath, content, 0644)
+
+					if err != nil {
+						return nil
+					}
 
 					return nil
 				},
